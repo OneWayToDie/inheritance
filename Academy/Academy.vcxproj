@@ -129,6 +129,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseClass.h" />
+    <ClInclude Include="GraduateClass.h" />
+    <ClInclude Include="StudentClass.h" />
+    <ClInclude Include="TeacherClass.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
