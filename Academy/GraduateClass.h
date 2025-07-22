@@ -1,4 +1,4 @@
-#include"BaseClass.h"
+ï»¿#include"BaseClass.h"
 
 #define GRADUATE_TAKE_PARAMETERES const std::string& theme_of_work, const std::string& date_of_diploma_defense, int scores_of_practice, int scores_of_theory, int average_score
 #define GRADUATE_GIVE_PARAMETEES theme_of_work, date_of_diploma_defense, scores_of_practice, scores_of_theory, average_score
@@ -70,6 +70,6 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << "Òåìà äèïëîìíîé ðàáîòû - " << theme_of_work << ", " << "Äàòà çàùèòû äèïëîìà - " << date_of_diploma_defense << ", " << "Áàëëû çà ïðàêòèêó - " << scores_of_practice << ", " << "Áàëëû çà òåîðèþ - " << scores_of_theory << ", " << "Ñðåäíèé áàëë - " << average_score << endl;
+		cout << "Ð¢ÐµÐ¼Ð° Ð´Ð¸Ð¿Ð»Ð¾Ð¼Ð½Ð¾Ð¹ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ - " << theme_of_work << ", " << "Ð”Ð°Ñ‚Ð° Ð·Ð°Ñ‰Ð¸Ñ‚Ñ‹ Ð´Ð¸Ð¿Ð»Ð¾Ð¼Ð° - " << date_of_diploma_defense << ", " << "Ð‘Ð°Ð»Ð»Ñ‹ Ð·Ð° Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÑƒ - " << scores_of_practice << ", " << "Ð‘Ð°Ð»Ð»Ñ‹ Ð·Ð° Ñ‚ÐµÐ¾Ñ€Ð¸ÑŽ - " << scores_of_theory << ", " << "Ð¡Ñ€ÐµÐ´Ð½Ð¸Ð¹ Ð±Ð°Ð»Ð» - " << average_score << endl;
 	}
 };
