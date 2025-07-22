@@ -118,7 +118,7 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
+		cout << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance << endl;
 	}
 };
 
@@ -161,13 +161,13 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << speciality << " " << experience << endl;
+		cout << "Специальность - " << speciality << ", " << "опыт работы - " << experience << endl;
 	}
 };
 
 
-#define GRADUATE_TAKE_PARAMETERES const std::string& theme_of_work, const std::string& date_of_diploma_defense, int scores_of_practice, int scores_of_theory
-#define GRADUATE_GIVE_PARAMETEES theme_of_work, date_of_diploma_defense, scores_of_practice, scores_of_theory
+#define GRADUATE_TAKE_PARAMETERES const std::string& theme_of_work, const std::string& date_of_diploma_defense, int scores_of_practice, int scores_of_theory, int average_score
+#define GRADUATE_GIVE_PARAMETEES theme_of_work, date_of_diploma_defense, scores_of_practice, scores_of_theory, average_score
 
 class Graduate :public Human
 {
@@ -175,6 +175,7 @@ class Graduate :public Human
 	std::string date_of_diploma_defense;
 	int scores_of_practice;
 	int scores_of_theory;
+	int average_score;
 public:
 	const std::string& get_theme_of_work()const
 	{
@@ -192,6 +193,10 @@ public:
 	{
 		return scores_of_theory;
 	}
+	int get_average_score()const
+	{
+		return average_score;
+	}
 	void set_theme_of_work(const std::string& theme_of_work)
 	{
 		this->theme_of_work = theme_of_work;
@@ -208,6 +213,10 @@ public:
 	{
 		this->scores_of_theory = scores_of_theory;
 	}
+	void set_average_score(int average_score)
+	{
+		this->average_score = (scores_of_theory+scores_of_practice)/2;
+	}
 
 	//					constructors:
 	Graduate(HUMAN_TAKE_PARAMETERES, GRADUATE_TAKE_PARAMETERES) :Human(HUMAN_GIVE_PARAMETERES)
@@ -216,6 +225,7 @@ public:
 		set_date_of_diploma_defense(date_of_diploma_defense);
 		set_scores_of_practice(scores_of_practice);
 		set_scores_of_theory(scores_of_theory);
+		set_average_score(average_score);
 		cout << "GConstructors:\t" << this << endl;
 	}
 	~Graduate()
@@ -226,7 +236,7 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << "Тема дипломной работы - " << theme_of_work << ", " << "Дата защиты диплома - " << date_of_diploma_defense << ", " << "Баллы за практику - "<< scores_of_practice << ", " << "Баллы за теорию - " << scores_of_theory << endl;
+		cout << "Тема дипломной работы - " << theme_of_work << ", " << "Дата защиты диплома - " << date_of_diploma_defense << ", " << "Баллы за практику - "<< scores_of_practice << ", " << "Баллы за теорию - " << scores_of_theory << ", " << "Средний балл - " << average_score << endl;
 	}
 };
 
@@ -243,6 +253,6 @@ void main()
 	Teacher teacher("White", "Walter", 50, "Chemistry", 25);
 	teacher.info();
 
-	Graduate graduate("Danila", "Debilovi4", 25, "nifiga nedelanie", "20.09.2025", 80, 0);
+	Graduate graduate("Danila", "Debilovi4", 25, "nifiga nedelanie", "20.09.2025", 80, 0, 0);
 	graduate.info();
 }
