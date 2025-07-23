@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include"BaseClass.h"
-//#include"StudentClass.h"
 
 #define ELDER_TAKE_PARAMETERES bool Responsibility, bool Justice, bool Communication_skills, bool Organizational_skills
 #define ELDER_GIVE_PARAMETERES  Responsibility, Justice, Communication_skills, Organizational_skills
