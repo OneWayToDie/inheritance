@@ -3,6 +3,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#define delimiter "\n---------------------------------------------------------\n"
+
 #define HUMAN_TAKE_PARAMETERES const std::string& last_name, const std::string& first_name, int age
 #define HUMAN_GIVE_PARAMETERES last_name, first_name, age
 
@@ -45,15 +47,15 @@ public:
 		set_age(age);
 		cout << "HConstructor:\t" << this << endl;
 	}
-	~Human()
+	virtual ~Human()
 	{
 		cout << "HDestructor:\t" << this << endl;
 	}
 
 	//					Methods:
-	void info()const
+	virtual void info()const	// BaseClass
 	{
-		cout << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  ";
+		cout << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  " << endl;
 	}
 };
 
@@ -115,7 +117,7 @@ public:
 	}
 
 	//					Methods:
-	void info()const
+	void info()const override	//Derived class
 	{
 		Human::info();
 		cout << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance << endl;
@@ -158,7 +160,7 @@ public:
 	{
 		cout << "TDestructor:\t" << this << endl;
 	}
-	void info()const
+	void info()const override
 	{
 		Human::info();
 		cout << "Специальность - " << speciality << ", " << "опыт работы - " << experience << endl;
@@ -268,29 +270,54 @@ public:
 	}
 
 	//			Methods:
-	void info()const
+	void info()const override
 	{
 		Student::info();
 		cout << "предмет - " << get_subject() << endl;
 	}
 };
 
+
+//#define INHERITANCE
+#define Polymorphism
+
 void main()
 {
 	setlocale(LC_ALL, "");
 
+#ifdef INHERITANCE
 	Human human("Montana", "Antonio", 25);
 	human.info();
 
 	Student student("Pinkman", "Jessie", 22, "Chemistry", "WW_220", 95, 98);
 	student.info();
 
-	Teacher teacher("White", "Walter", 50, "Chemistry", 25);
+	Teacher teacher("white", "walter", 50, "chemistry", 25);
 	teacher.info();
 
-	//Graduate graduate("Danila", "Debilovi4", 25, "nifiga nedelanie", "20.09.2025", 80, 0, 0);
+	//graduate graduate("danila", "debilovi4", 25, "nifiga nedelanie", "20.09.2025", 80, 0, 0);
 	//graduate.info();
 
-	Graduate graduate("Danila", "Debilovi4", 25, "nifiga nedelanie", "WW_220", 0, 0, "hz che");
+	Graduate graduate("danila", "debilovi4", 25, "nifiga nedelanie", "pv_521", 0, 0, "hz che");
 	graduate.info();
+#endif
+	Human* group[] =
+	{
+		new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_220", 95, 98),
+		new	Teacher("white", "walter", 50, "chemistry", 25),
+		new Graduate("Debilovi4", "Danila", 25, "nifiga nedelanie", "pv_521", 0, 0, "OOP"),
+		new Student("Vercetty", "Tommy", 30, "Theft", "Vice", 98, 99),
+		new Teacher("Diaz", "Ricardo", 50, "Weapons distribution", 20)
+	};
+	cout << delimiter << endl;
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		group[i]->info();
+		cout << delimiter << endl;
+	}
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		delete group[i];
+		cout << delimiter << endl;
+	}
 }
