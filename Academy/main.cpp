@@ -2,6 +2,7 @@
 #include"StudentClass.h"
 #include"TeacherClass.h"
 #include"GraduateClass.h"
+#include"Elder.h"
 
 
 void main()
@@ -19,4 +20,7 @@ void main()
 
 	Graduate graduate("Danila", "Debilovi4", 25, "nifiga nedelanie", "20.09.2025", 80, 0, 0);
 	graduate.info();
+
+	Elder elder("No_name", "Name undefined", 999, "Physics", "Ghoul_SSSrank", 1000, 1000, 0, 1, 1, 0);
+	elder.info();
 }

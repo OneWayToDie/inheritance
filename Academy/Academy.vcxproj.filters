@@ -32,5 +32,8 @@
     <ClInclude Include="GraduateClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Elder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseClass.h" />
+    <ClInclude Include="Elder.h" />
     <ClInclude Include="GraduateClass.h" />
     <ClInclude Include="StudentClass.h" />
     <ClInclude Include="TeacherClass.h" />
