@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include"BaseClass.h"
 //#include"StudentClass.h"
 
@@ -7,10 +7,10 @@
 
 class Elder :public Human, Student
 {
-	bool Responsibility;//Ответственность
-	bool Justice;	//Справедливость
-	bool Communication_skills;	//коммуникабельность
-	bool Organizational_skills;	//Организаторские навыки
+	bool Responsibility;//РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ
+	bool Justice;	//РЎРїСЂР°РІРµРґР»РёРІРѕСЃС‚СЊ
+	bool Communication_skills;	//РєРѕРјРјСѓРЅРёРєР°Р±РµР»СЊРЅРѕСЃС‚СЊ
+	bool Organizational_skills;	//РћСЂРіР°РЅРёР·Р°С‚РѕСЂСЃРєРёРµ РЅР°РІС‹РєРё
 public:
 	bool get_Responsibility()const
 	{
@@ -61,6 +61,6 @@ public:
 	void info()const
 	{
 		Student::info();
-		cout << "Ответственность - " << Responsibility << ", " << "Справедливость - " << Justice << ", " << "Коммуникабельность - " << Communication_skills << ", " << "Организаторские навыки - " << Organizational_skills << endl;
+		cout << "РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ - " << Responsibility << ", " << "РЎРїСЂР°РІРµРґР»РёРІРѕСЃС‚СЊ - " << Justice << ", " << "РљРѕРјРјСѓРЅРёРєР°Р±РµР»СЊРЅРѕСЃС‚СЊ - " << Communication_skills << ", " << "РћСЂРіР°РЅРёР·Р°С‚РѕСЂСЃРєРёРµ РЅР°РІС‹РєРё - " << Organizational_skills << endl;
 	}
 };
