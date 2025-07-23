@@ -1,10 +1,10 @@
 ﻿#pragma once
-#include"BaseClass.h"
+#include"StudentClass.h"
 
 #define ELDER_TAKE_PARAMETERES bool Responsibility, bool Justice, bool Communication_skills, bool Organizational_skills
 #define ELDER_GIVE_PARAMETERES  Responsibility, Justice, Communication_skills, Organizational_skills
 
-class Elder :public Human, Student
+class Elder :public Student
 {
 	bool Responsibility;//Ответственность
 	bool Justice;	//Справедливость
@@ -44,7 +44,8 @@ public:
 		this->Organizational_skills = Organizational_skills;
 	}
 	//				Constructors:
-	Elder(HUMAN_TAKE_PARAMETERES,STUDENT_TAKE_PARAMETERES, ELDER_TAKE_PARAMETERES) :Human(HUMAN_GIVE_PARAMETERES), Student(HUMAN_GIVE_PARAMETERES, STUDENT_GIVE_PARAMETERES)
+	Elder(HUMAN_TAKE_PARAMETERES,STUDENT_TAKE_PARAMETERES, ELDER_TAKE_PARAMETERES) 
+		:Student(HUMAN_GIVE_PARAMETERES, STUDENT_GIVE_PARAMETERES)
 	{
 		set_Responsibility(Responsibility);
 		set_Justice(Justice);

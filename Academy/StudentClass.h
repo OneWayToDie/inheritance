@@ -1,3 +1,4 @@
+#pragma once
 #include"BaseClass.h"
 
 #define STUDENT_TAKE_PARAMETERES  const std::string& speciality, const std::string& group, double rating, double attendance
