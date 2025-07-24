@@ -1,11 +1,21 @@
 ﻿#include"stdafx.h"
 #include"Human.h"
 #include"Workers.h"
+#include"Zoo.h"
 using namespace std;
 
 void main()
 {
 	setlocale(LC_ALL, "");
+
+	cout << delimiter << endl;
+
+	cout << "Информация о Зоопарке: " << "\n\n";
+
+	Zoo zoo("В будни с 7 утра до 22:00, в выходные с 8:30 до 23:00, время кормёжки с рук - 13:00-14:00", 34, 41, 18);
+	zoo.info();
+
+	cout << delimiter << endl;
 
 	Human* group_Human[] =
 	{

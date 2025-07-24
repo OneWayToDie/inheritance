@@ -29,5 +29,8 @@
     <ClInclude Include="Workers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Zoo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
