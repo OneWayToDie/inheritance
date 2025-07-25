@@ -36,9 +36,7 @@ void main()
 		group_Human[i]->info();											//Вывод инфы о людях
 	}
 
-
 	cout << delimiter << endl;
-
 
 	Workers* group_Workers[] =
 	{
@@ -48,16 +46,12 @@ void main()
 		new Workers("Grigoriy", "Pavlov", 45, 78.1, "Ветеринар", "дневная", "6/1", 15, 90000)
 	};
 
-
-
-	cout << "\n" << "Работники зоопарка:  " << "\n\n\n";
+	cout << "\nРаботники зоопарка:\n\n\n";
 	for (int i = 0; i < sizeof(group_Workers) / sizeof(group_Workers[0]); i++)
 	{
 		group_Workers[i]->info();										//Вывод инфы о рабочих
 		cout << delimiter << endl;
 	}
-
-
 	Animals* group_Animals[] =
 	{
 		new Animals("Хордовые", "Пресмыкающиеся", "Крокодилы", "Настоящие крокодилы", "Крокодилы", "Гребнистый крокодил", "Северное побережье Австралии и острова Индонезии", 2),
@@ -70,10 +64,9 @@ void main()
 	cout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
-		group_Animals[i]->info();				// Вывод информации о животных
+		group_Animals[i]->info();										// Вывод информации о животных
 		cout << delimiter << endl;
 	}
-
 
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
