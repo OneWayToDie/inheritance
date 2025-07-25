@@ -1,5 +1,4 @@
 ﻿#pragma once
-#pragma once
 #include"stdafx.h"
 
 #define ZOO_TAKE_PARAMETERS const std::string& working_hours, int number_of_employees, int number_of_animal_enclosures, int number_of_animal_species

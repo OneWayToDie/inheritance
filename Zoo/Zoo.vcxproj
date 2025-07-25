@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animals.h" />
     <ClInclude Include="Human.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Workers.h" />

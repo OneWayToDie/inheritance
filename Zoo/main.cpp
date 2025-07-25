@@ -2,6 +2,7 @@
 #include"Human.h"
 #include"Workers.h"
 #include"Zoo.h"
+#include"Animals.h"
 using namespace std;
 
 void main()
@@ -41,10 +42,10 @@ void main()
 
 	Workers* group_Workers[] =
 	{
-		new Workers("Artem", "Vorobiev", 26, 74.6, "Смотритель", "дневная", "2/2", 6, 50000),
+		new Workers("Artem", "Vorobiev", 26, 74.6, "Смотритель зоопарка", "дневная", "2/2", 6, 50000),
 		new Workers("Anton", "Zaicev", 32, 63.1, "уборщик", "дневная", "5/2", 1, 25000),
-		new Workers("Liza", "Valerieva", 21, 52.1, "Волонтёр", "дневная", "свободный график", 2, 15000),
-		new Workers("Grigoriy", "Pavlov", 45, 78.1, "Главный смотритель", "дневная", "6/1", 15, 90000),
+		new Workers("Liza", "Valerieva", 21, 52.1, "Зоолог", "дневная", "свободный график", 2, 45000),
+		new Workers("Grigoriy", "Pavlov", 45, 78.1, "Ветеринар", "дневная", "6/1", 15, 90000)
 	};
 
 
@@ -57,19 +58,33 @@ void main()
 	}
 
 
+	Animals* group_Animals[] =
+	{
+		new Animals("Хордовые", "Пресмыкающиеся", "Крокодилы", "Настоящие крокодилы", "Крокодилы", "Гребнистый крокодил", "Северное побережье Австралии и острова Индонезии", 2),
+		new Animals("Хордовые", "Млекопитающие", "Непарнокопытные", "Лошадиные", "Лошади", "Бурчеллова зебра", "Юго-восточная Африка, Южная Эфиопия", 3),
+		new Animals("Хордовые", "Млекопитающие", "Хоботные", "Слоновые", "Слон", "Слон африканский", "Саванны и тропические леса", 4),
+		new Animals("Хордовые", "Млекопитающие", "Грызуны", "Беличьи", "Летяги азиатские", "Летяга обыкновенная", "Северовосточная Германия, Тундра, Кольский полуостров", 7),
+		new Animals("Хордовые", "Млекопитающие", "Хищные", "Куньи", "Ласки и хорьки", "Степной хорёк", "Средняя и центральная Азия", 4)
+	};
+
+	cout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
+	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
+	{
+		group_Animals[i]->info();				// Вывод информации о животных
+		cout << delimiter << endl;
+	}
 
 
-
-
-
-
+	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
+	{
+		delete group_Animals[i];										//Делимитер животных
+	}
+	cout << delimiter << endl;
 	for (int i = 0; i < sizeof(group_Workers) / sizeof(group_Workers[0]); i++)
 	{
 		delete group_Workers[i];										//Делимитер рабочих
 	}
-
 	cout << delimiter << endl;
-
 	for (int i = 0; i < sizeof(group_Human) / sizeof(group_Human[0]);i++)
 	{
 		delete group_Human[i];											//Делимитер людей
