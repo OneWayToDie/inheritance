@@ -54,15 +54,15 @@ public:
 	}
 
 	//					Methods:
-	virtual void info()const	// BaseClass
+	virtual std::ostream& info(std::ostream& os)const	// BaseClass
 	{
-		cout << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  " << endl;
+		return os << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  ";
 	}
 };
 
 std::ostream& operator<<(std::ostream& os, const Human& obj)
 {
-	return os << obj.get_last_name() << " " << obj.get_first_name() << " " << obj.get_age();
+	return obj.info(os);
 }
 
 #define STUDENT_TAKE_PARAMETERES  const std::string& speciality, const std::string& group, double rating, double attendance
@@ -123,10 +123,9 @@ public:
 	}
 
 	//					Methods:
-	void info()const override	//Derived class
+	std::ostream& info(std::ostream& os)const override	//Derived class
 	{
-		Human::info();
-		cout << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance << endl;
+		return Human::info(os) << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance;
 	}
 };
 
@@ -166,10 +165,9 @@ public:
 	{
 		cout << "TDestructor:\t" << this << endl;
 	}
-	void info()const override
+	std::ostream& info(std::ostream& os)const override
 	{
-		Human::info();
-		cout << "Специальность - " << speciality << ", " << "опыт работы - " << experience << endl;
+		return Human::info(os) << "Специальность - " << speciality << ", " << "опыт работы - " << experience;
 	}
 };
 
@@ -202,10 +200,9 @@ public:
 	}
 
 	//			Methods:
-	void info()const override
+	std::ostream& info(std::ostream& os)const override
 	{
-		Student::info();
-		cout << "предмет - " << get_subject() << endl;
+		return Student::info(os) << ", " << "предмет - " << get_subject();
 	}
 };
 
@@ -245,7 +242,7 @@ void main()
 	std::ofstream fout("group.txt");
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
-		group[i]->info();
+		group[i]->info(cout);
 		fout << *group[i] << endl;
 		cout << delimiter << endl;
 	}
