@@ -208,7 +208,7 @@ public:
 
 
 //#define INHERITANCE
-#define Polymorphism
+#define POLYMORPHISM
 
 void main()
 {
@@ -228,7 +228,7 @@ void main()
 	graduate.info();
 #endif
 
-
+#ifdef POLYMORPHISM
 	Human* group[] =
 	{
 		new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_220", 95, 98),
@@ -254,4 +254,5 @@ void main()
 		delete group[i];
 		cout << delimiter << endl;
 	}
+#endif
 }
