@@ -208,7 +208,8 @@ public:
 
 
 //#define INHERITANCE
-#define POLYMORPHISM
+//#define POLYMORPHISM
+#define LoadGroup
 
 void main()
 {
@@ -254,5 +255,11 @@ void main()
 		delete group[i];
 		cout << delimiter << endl;
 	}
+#endif
+
+#ifdef LoadGroup
+
+
+
 #endif
 }
