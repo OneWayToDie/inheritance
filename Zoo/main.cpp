@@ -10,15 +10,6 @@ void main()
 {
 	setlocale(LC_ALL, "");
 
-	cout << delimiter << endl;
-
-	cout << "Информация о Зоопарке: " << "\n\n";
-
-	Zoo zoo("В будни с 7 утра до 22:00, в выходные с 8:30 до 23:00, время кормёжки с рук - 13:00-14:00", 34, 41, 18);
-	zoo.info();
-
-	cout << delimiter << endl;
-
 	Human* group_Human[] =
 	{
 		new Human("Asphodel", "Vladimirov", 22, 74.6),
@@ -27,18 +18,6 @@ void main()
 		new Human("Bruce", "Wayne", 40, 90),
 		new Human("No_name", "Undefined", 24, 125)
 	};
-
-	cout << delimiter << endl;
-
-	cout << "Просто люди с улицы: " << "\n\n";
-
-	for (int i = 0; i < sizeof(group_Human) / sizeof(group_Human[0]); i++)
-	{
-		group_Human[i]->info();											//Вывод инфы о людях
-	}
-
-	cout << delimiter << endl;
-
 	Workers* group_Workers[] =
 	{
 		new Workers("Artem", "Vorobiev", 26, 74.6, "Смотритель зоопарка", "дневная", "2/2", 6, 50000),
@@ -46,13 +25,6 @@ void main()
 		new Workers("Liza", "Valerieva", 21, 52.1, "Зоолог", "дневная", "свободный график", 2, 45000),
 		new Workers("Grigoriy", "Pavlov", 45, 78.1, "Ветеринар", "дневная", "6/1", 15, 90000)
 	};
-
-	cout << "\nРаботники зоопарка:\n\n\n";
-	for (int i = 0; i < sizeof(group_Workers) / sizeof(group_Workers[0]); i++)
-	{
-		group_Workers[i]->info();										//Вывод инфы о рабочих
-		cout << delimiter << endl;
-	}
 	Animals* group_Animals[] =
 	{
 		new Animals("Хордовые", "Пресмыкающиеся", "Крокодилы", "Настоящие крокодилы", "Крокодилы", "Гребнистый крокодил", "Северное побережье Австралии и острова Индонезии", 2),
@@ -62,15 +34,40 @@ void main()
 		new Animals("Хордовые", "Млекопитающие", "Хищные", "Куньи", "Ласки и хорьки", "Степной хорёк", "Средняя и центральная Азия", 4)
 	};
 
-	cout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
+
+
 	std::ofstream fout("ZOOgroup.txt");
+	cout << "Просто люди с улицы: " << "\n\n";
+
+	for (int i = 0; i < sizeof(group_Human) / sizeof(group_Human[0]); i++)
+	{
+		group_Human[i]->info();											//Вывод инфы о людях
+	}
+
+	cout << delimiter << endl;
+	cout << "Информация о Зоопарке: " << "\n\n";
+
+	Zoo zoo("В будни с 7 утра до 22:00, в выходные с 8:30 до 23:00, время кормёжки с рук - 13:00-14:00", 34, 41, 18);
+	zoo.info();
+
+	cout << delimiter << endl;
+
+	cout << "\nРаботники зоопарка:\n\n\n";
+	for (int i = 0; i < sizeof(group_Workers) / sizeof(group_Workers[0]); i++)
+	{
+		group_Workers[i]->info();										//Вывод инфы о рабочих
+		cout << delimiter << endl;
+	}
+	cout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
 		group_Animals[i]->info();										// Вывод информации о животных
 		cout << delimiter << endl;
 	}
 	fout.close();
-	system("notepad group.txt");
+	system("notepad ZOOgroup.txt");
+
+
 
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
