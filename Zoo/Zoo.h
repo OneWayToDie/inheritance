@@ -57,8 +57,13 @@ public:
 		cout << "ZDestructor:\t" << this << endl;
 	}
 	//			Methods:
-	void info()const
+	std::ostream& info(std::ostream& os)const
 	{
-		cout << "Время работы зоопарка - " << working_hours << "\n" << "Количество занятых рабочих мест - " << number_of_employees << "\n" << "Количество вольеров с животными - " << number_of_animal_enclosures << "\n" << "Количество видов животных - " << number_of_animal_species << endl;
+		return os << "Время работы зоопарка - " << working_hours << "\n" << "Количество занятых рабочих мест - " << number_of_employees << "\n" << "Количество вольеров с животными - " << number_of_animal_enclosures << "\n" << "Количество видов животных - " << number_of_animal_species << endl;
 	}
 };
+
+std::ostream& operator<<(std::ostream& os, const Zoo& obj)
+{
+	return obj.info(os);
+}

@@ -57,8 +57,13 @@ public:
 		cout << "HDestructor:\t" << this << endl;
 	}
 	//				Methods:
-	virtual void info()const
+	virtual std::ostream& info(std::ostream& os)const
 	{
-		cout << "Имя - " << first_name << ", " << "Фамилия - " << last_name << ", " << "Возраст - " << Age << ", " << "Вес(в кг) - " << Weight << endl;
+		return os << "Имя - " << first_name << ", " << "Фамилия - " << last_name << ", " << "Возраст - " << Age << ", " << "Вес(в кг) - " << Weight << endl;
 	}
 };
+
+std::ostream& operator<<(std::ostream& os, const Human& obj)
+{
+	return obj.info(os);
+}

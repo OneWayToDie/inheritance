@@ -68,9 +68,8 @@ public:
 		cout << "WDestructor:\t" << this << endl;
 	}
 	//			Methods:
-	void info()const override
+	std::ostream& info(std::ostream& os)const override
 	{
-		Human::info();
-		cout << "Должность - " << job_title << ", " << "Рабочая смена - " << work_shift << ", " << "График работы - " << work_schedule << ", " << "Стаж работы - " << work_experience << ", " << "Зарплата - " << Salary << endl;
+		return Human::info(os) << "Должность - " << job_title << ", " << "Рабочая смена - " << work_shift << ", " << "График работы - " << work_schedule << ", " << "Стаж работы - " << work_experience << ", " << "Зарплата - " << Salary << endl;
 	}
 };

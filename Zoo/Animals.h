@@ -97,8 +97,13 @@ public:
 		cout << "ADestructor:\t" << this << endl;
 	}
 	//				Methods:
-	virtual void info()const
+	virtual std::ostream& info(std::ostream& os)const
 	{
-		cout << "Тип - " << type << ", " << "Класс - " << klass << ", " << "Отряд - " << squad << ", " << "Семейство - " << family << ", " << "Род - " << genus << "," << "\n" << "Вид - " << kind << ", "  << "Ареал обитания - " << habitat << ", " << "Количество проживающих в зоопарке - " << quantity_in_Zoo << endl;
+		return os << "Тип - " << type << ", " << "Класс - " << klass << ", " << "Отряд - " << squad << ", " << "Семейство - " << family << ", " << "Род - " << genus << "," << "\n" << "Вид - " << kind << ", "  << "Ареал обитания - " << habitat << ", " << "Количество проживающих в зоопарке - " << quantity_in_Zoo << endl;
 	}
 };
+
+std::ostream& operator << (std::ostream & os, const Animals & obj)
+{
+	return obj.info(os);
+}

@@ -38,30 +38,38 @@ void main()
 
 	std::ofstream fout("ZOOgroup.txt");
 	cout << "Просто люди с улицы: " << "\n\n";
+	fout << "Просто люди с улицы: " << "\n\n";
 
 	for (int i = 0; i < sizeof(group_Human) / sizeof(group_Human[0]); i++)
 	{
-		group_Human[i]->info();											//Вывод инфы о людях
+		group_Human[i]->info(cout);											//Вывод инфы о людях
+		fout << *group_Human[i] << endl;
 	}
 
 	cout << delimiter << endl;
 	cout << "Информация о Зоопарке: " << "\n\n";
+	fout << "Информация о Зоопарке: " << "\n\n";
 
 	Zoo zoo("В будни с 7 утра до 22:00, в выходные с 8:30 до 23:00, время кормёжки с рук - 13:00-14:00", 34, 41, 18);
-	zoo.info();
+	zoo.info(cout);
+	fout << zoo << endl;
 
 	cout << delimiter << endl;
 
 	cout << "\nРаботники зоопарка:\n\n\n";
+	fout << "\nРаботники зоопарка:\n\n\n";
 	for (int i = 0; i < sizeof(group_Workers) / sizeof(group_Workers[0]); i++)
 	{
-		group_Workers[i]->info();										//Вывод инфы о рабочих
+		group_Workers[i]->info(cout);										//Вывод инфы о рабочих
+		fout << *group_Workers[i] << endl;
 		cout << delimiter << endl;
 	}
 	cout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
+	fout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
-		group_Animals[i]->info();										// Вывод информации о животных
+		group_Animals[i]->info(cout);										// Вывод информации о животных
+		fout << *group_Animals[i] << endl;
 		cout << delimiter << endl;
 	}
 	fout.close();
