@@ -3,6 +3,7 @@
 #include"Workers.h"
 #include"Zoo.h"
 #include"Animals.h"
+
 using namespace std;
 
 void main()
@@ -62,11 +63,14 @@ void main()
 	};
 
 	cout << "\n\nИнформация о животных содержащихся в зоопраке:\n\n\n";
+	std::ofstream fout("ZOOgroup.txt");
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
 		group_Animals[i]->info();										// Вывод информации о животных
 		cout << delimiter << endl;
 	}
+	fout.close();
+	system("notepad group.txt");
 
 	for (int i = 0; i < sizeof(group_Animals) / sizeof(group_Animals[0]); i++)
 	{
