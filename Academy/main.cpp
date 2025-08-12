@@ -1,5 +1,6 @@
 ﻿#include<iostream>
 #include<fstream>
+#include<string>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -240,7 +241,8 @@ void main()
 	};
 	cout << delimiter << endl;
 
-	std::ofstream fout("group.txt");
+	std::ofstream fout;
+	fout.open("group.txt", std::ios_base::app);
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		group[i]->info(cout);
@@ -258,8 +260,21 @@ void main()
 #endif
 
 #ifdef LoadGroup
+	std::ifstream fin("group.txt");
 
-
-
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			std::string buffer;
+			std::getline(fin, buffer);
+			cout << buffer << endl;
+		}
+	}
+	else
+	{
+		std::cerr << "Error: File not found" << endl;
+	}
+	fin.close();
 #endif
 }
