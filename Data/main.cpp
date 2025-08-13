@@ -61,7 +61,6 @@ public:
 			set_Month(Month);
 			set_Year(Year);
 		}
-			
 		cout << "Constructor:\t" << this << endl;
 	}
 	Data(int Year)
