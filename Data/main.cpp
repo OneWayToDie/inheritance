@@ -41,7 +41,6 @@ public:
 	{
 		if (Month > 12 || Day > 30)
 		{
-
 			if ((Month % 12 + Day / 30) > 12)
 			{
 				set_Day(Day % 30);
