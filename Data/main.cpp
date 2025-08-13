@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<fstream>
 using std::cin;
 using std::cout;
@@ -107,7 +107,7 @@ public:
 	//			Methods:
 	virtual std::ostream& prinimaemaya_data(std::ostream& os)const
 	{
-		return os << "Ãîä - " << Year << " Ìåñÿö - " << Month << " Äåíü - " << Day << endl;
+		return os << "Ð“Ð¾Ð´ - " << Year << " ÐœÐµÑÑÑ† - " << Month << " Ð”ÐµÐ½ÑŒ - " << Day << endl;
 	}
 };
 
