@@ -41,15 +41,16 @@ public:
 	{
 		if (Month > 12 || Day > 30)
 		{
-			set_Day(Day % 30);
-			set_Month(Month % 12 + Day / 30);
+
 			if ((Month % 12 + Day / 30) > 12)
 			{
+				set_Day(Day % 30);
 				set_Month((Month % 12 + Day / 30) % 12);
 				set_Year(Year + Month / 12 + (Month % 12 + Day / 30) / 12);
 			}
 			else
 			{
+				set_Day(Day % 30);
 				set_Month(Month % 12 + Day / 30);
 				set_Year(Year + Month / 12);
 			}
@@ -60,6 +61,7 @@ public:
 			set_Month(Month);
 			set_Year(Year);
 		}
+			
 		cout << "Constructor:\t" << this << endl;
 	}
 	Data(int Year)
@@ -138,7 +140,7 @@ void main()
 
 	Data data0(1975, 11, 44);
 	Data data1(1976, 10, 12);
-	Data data2(1976, 30, 1245);
+	Data data2(1976, 273, 124);
 	data0.prinimaemaya_data(cout);
 	data1.prinimaemaya_data(cout);
 	data2.prinimaemaya_data(cout);
