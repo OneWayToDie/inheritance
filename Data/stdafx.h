@@ -7,4 +7,4 @@ using std::endl;
 
 class Data;
 
-#define DATA_TAKE_PARAMETERES int Year, int Month, int Day
+#define DATA_TAKE_PARAMETERS int Year, int Month, int Day

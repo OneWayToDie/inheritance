@@ -33,29 +33,82 @@ public:
 		this->Year = Year;
 	}
 	//			Constructors:
-	Data(DATA_TAKE_PARAMETERES)
+	Data(DATA_TAKE_PARAMETERS)
 	{
-		if (Month > 12 || Day > 30)
+		for (int i = 0; i <= Month + Day/31; i++)
 		{
-			if ((Month % 12 + Day / 30) > 12)
+			if (Month % 12 == 1 || Month % 12 == 3 || Month % 12 == 5 || Month % 12 == 7 || Month % 12 == 8 || Month % 12 == 10 || Month % 12 == 12 || (Month + Day / 31) % 12 == 2 || (Month + Day / 31) % 12 == 4 || (Month + Day / 31) % 12 == 6 || (Month + Day / 31) % 12 == 9 || (Month + Day / 31) % 12 == 11)
 			{
-				set_Day(Day % 30);
-				set_Month((Month % 12 + Day / 30) % 12);
-				set_Year(Year + Month / 12 + (Month % 12 + Day / 30) / 12);
+				if (Month + Day/31 > 12 && Day >= 365)
+				{
+					Year = Year + Month / 12 + Day / 365;
+					Month = Month % 12;
+					Day = (Day % 365)%31;
+				}
+				if (Day >= 365)
+				{
+					Year = Year + Day / 365;
+					Month = Month + Day % 365 / 30;
+					if (Month > 12)
+					{
+						Month = Month % 12;
+					}
+					Day = (Day % 365) % 31;
+				}
+				if ((Month % 12 + Day / 31) > 12)
+				{
+					Year = Year + Month / 12 + (Month % 12 + Day / 31) / 12;
+					Month = (Month % 12 + Day / 31) % 12;
+					Day = Day % 31;
+				}
+				else
+				{
+					Month = Month % 12 + Day / 31;
+					if (Month == 0)
+					{
+						Month = 12;
+					}
+					Day = Day % 31;
+				}
 			}
 			else
 			{
-				set_Day(Day % 30);
-				set_Month(Month % 12 + Day / 30);
-				set_Year(Year + Month / 12);
+				if (Month + Day / 30 > 12 && Day >= 365)
+				{
+					Year = Year + (Month / 12) + Day / 365;
+					Month = Month % 12;
+					Day = (Day % 365) % 30;
+				}
+				if (Day >= 365)
+				{
+					Year = Year + Day / 365;
+					Month = Month + Day % 365 / 30;
+					if (Month > 12)
+					{
+						Month = Month % 12;
+					}
+					Day = (Day % 365) % 30;
+				}
+				if ((Month % 12 + Day / 30) > 12)
+				{
+					Year = Year + Month / 12 + (Month % 12 + Day / 30) / 12;
+					Month = (Month % 12 + Day / 30) % 12;
+					Day = Day % 30;
+				}
+				else
+				{
+					Month = (Month % 12 + Day / 30);
+					if(Month == 0)
+					{
+						Month = 12;
+					}
+					Day = Day % 30;
+				}
 			}
 		}
-		else
-		{
-			set_Day(Day);
-			set_Month(Month);
-			set_Year(Year);
-		}
+		set_Day(Day);
+		set_Month(Month);
+		set_Year(Year);
 		cout << "Constructor:\t" << this << endl;
 	}
 	Data(int Year)
@@ -104,7 +157,6 @@ public:
 		return os << "Год - " << Year << " Месяц - " << Month << " День - " << Day << endl;
 	}
 };
-
 
 std::ostream& operator<<(std::ostream& os, const Data& obj)
 {
