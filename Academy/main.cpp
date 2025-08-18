@@ -10,12 +10,21 @@ using std::endl;
 #define HUMAN_TAKE_PARAMETERES const std::string& last_name, const std::string& first_name, int age
 #define HUMAN_GIVE_PARAMETERES last_name, first_name, age
 
+
 class Human
 {
+	static const int TYPE_WIDTH = 12;
+	static const int NAME_WIDTH = 12;
+	static const int AGE_WIDTH = 5;
+	static int count;	//Объвление статической переменной
 	std::string last_name;
 	std::string first_name;
 	int age;
 public:
+	static int get_count()
+	{
+		return count;
+	}
 	const std::string& get_last_name()const
 	{
 		return last_name;
@@ -47,19 +56,38 @@ public:
 		set_last_name(last_name);
 		set_first_name(first_name);
 		set_age(age);
+		count++;
 		cout << "HConstructor:\t" << this << endl;
 	}
 	virtual ~Human()
 	{
+		count--;
 		cout << "HDestructor:\t" << this << endl;
 	}
 
 	//					Methods:
 	virtual std::ostream& info(std::ostream& os)const	// BaseClass
 	{
-		return os << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  ";
+		os.width(TYPE_WIDTH);	// Метод width(N) задает размер поля, в которое будет выведено значение
+		os << std::left;
+		os << std::string(strchr(typeid(*this).name(), ' ') + 1) + ":";
+		//strchr(const char* str, char symbol); 
+		//strchr() в указанной строке находит указанный символ,
+		// И вовзвращает указатель на найденный символ, или 'nullptr',
+		// если указанный символ отсутствует в указанной строке.
+		// class Student;
+		//return os << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  ";
+		os.width(NAME_WIDTH);
+		os << last_name;
+		os.width(NAME_WIDTH);
+		os << first_name;
+		os.width(AGE_WIDTH);
+		os << age;
+		return os;
 	}
 };
+
+int Human::count = 0;	//Инициализация статической переменной (относится к определению класса - Class definition)
 
 std::ostream& operator<<(std::ostream& os, const Human& obj)
 {
@@ -71,6 +99,9 @@ std::ostream& operator<<(std::ostream& os, const Human& obj)
 
 class Student:public Human
 {
+	static const int SPECIALITY_WIDTH = 32;
+	static const int GROUP_WIDTH = 8;
+	static const int RAT_WIDTH = 8;
 	std::string speciality;
 	std::string group;
 	double rating;		//успеваемость
@@ -126,7 +157,17 @@ public:
 	//					Methods:
 	std::ostream& info(std::ostream& os)const override	//Derived class
 	{
-		return Human::info(os) << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance;
+		//return Human::info(os) << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance;
+		Human::info(os);
+		os.width(SPECIALITY_WIDTH);
+		os << speciality;
+		os.width(GROUP_WIDTH);
+		os << group;
+		os.width(RAT_WIDTH);
+		os << rating;
+		os.width(RAT_WIDTH);
+		os << attendance;
+		return os;
 	}
 };
 
@@ -135,6 +176,8 @@ public:
 
 class Teacher :public Human
 {
+	static const int SPECIALITY_WIDTH = 32;
+	static const int EXPERIENCE_WIDTH = 5;
 	std::string speciality;
 	int experience;
 public:
@@ -168,7 +211,13 @@ public:
 	}
 	std::ostream& info(std::ostream& os)const override
 	{
-		return Human::info(os) << "Специальность - " << speciality << ", " << "опыт работы - " << experience;
+		//return Human::info(os) << "Специальность - " << speciality << ", " << "опыт работы - " << experience;
+		Human::info(os);
+		os.width(SPECIALITY_WIDTH);
+		os << speciality;
+		os.width(EXPERIENCE_WIDTH);
+		os << experience;
+		return os;
 	}
 };
 
@@ -209,8 +258,9 @@ public:
 
 
 //#define INHERITANCE
-//#define POLYMORPHISM
-#define LoadGroup
+#define POLYMORPHISM
+//#define LoadGroup
+//#define LoadGroup_ClassWork
 
 void main()
 {
@@ -242,13 +292,15 @@ void main()
 	cout << delimiter << endl;
 
 	std::ofstream fout;
-	fout.open("group.txt", std::ios_base::app);
+	fout.open("group.txt"/*, std::ios_base::app*/);
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		group[i]->info(cout);
 		fout << *group[i] << endl;
 		cout << delimiter << endl;
 	}
+	cout << "Количество объектов: " << group[0]->get_count() << endl;
+	cout << "Количество объектов: " << Human::get_count() << endl;
 	fout.close();
 	system("notepad group.txt");
 
@@ -276,5 +328,9 @@ void main()
 		std::cerr << "Error: File not found" << endl;
 	}
 	fin.close();
+#endif
+
+#ifdef LoadGroup_ClassWork
+
 #endif
 }

@@ -1,10 +1,5 @@
-Фамилия - Pinkman, Имя - Jessie, Возраст - 22  Специальность - Chemistry, Номер группы - WW_220, Рейтинг - 95, Успеваемость - 98
-Фамилия - white, Имя - walter, Возраст - 50  Специальность - chemistry, опыт работы - 25
-Фамилия - Debilovi4, Имя - Danila, Возраст - 25  Специальность - nifiga nedelanie, Номер группы - pv_521, Рейтинг - 0, Успеваемость - 0, предмет - OOP
-Фамилия - Vercetty, Имя - Tommy, Возраст - 30  Специальность - Theft, Номер группы - Vice, Рейтинг - 98, Успеваемость - 99
-Фамилия - Diaz, Имя - Ricardo, Возраст - 50  Специальность - Weapons distribution, опыт работы - 20
-Фамилия - Pinkman, Имя - Jessie, Возраст - 22  Специальность - Chemistry, Номер группы - WW_220, Рейтинг - 95, Успеваемость - 98
-Фамилия - white, Имя - walter, Возраст - 50  Специальность - chemistry, опыт работы - 25
-Фамилия - Debilovi4, Имя - Danila, Возраст - 25  Специальность - nifiga nedelanie, Номер группы - pv_521, Рейтинг - 0, Успеваемость - 0, предмет - OOP
-Фамилия - Vercetty, Имя - Tommy, Возраст - 30  Специальность - Theft, Номер группы - Vice, Рейтинг - 98, Успеваемость - 99
-Фамилия - Diaz, Имя - Ricardo, Возраст - 50  Специальность - Weapons distribution, опыт работы - 20
+Student:    Pinkman     Jessie      22   Chemistry                       WW_220  95      98      
+Teacher:    white       walter      50   chemistry                       25   
+Graduate:   Debilovi4   Danila      25   nifiga nedelanie                pv_521  0       0       , предмет - OOP
+Student:    Vercetty    Tommy       30   Theft                           Vice    98      99      
+Teacher:    Diaz        Ricardo     50   Weapons distribution            20   
