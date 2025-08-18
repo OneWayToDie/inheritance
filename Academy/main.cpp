@@ -5,7 +5,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-#define delimiter "\n---------------------------------------------------------\n"
+#define delimiter "\n---------------------------------------------------------------------------------------------------------------------------\n"
+#define Nolimiter "\n__________________________________________________________________________________________________________________________________\n"
 
 #define HUMAN_TAKE_PARAMETERES const std::string& last_name, const std::string& first_name, int age
 #define HUMAN_GIVE_PARAMETERES last_name, first_name, age
@@ -70,7 +71,8 @@ public:
 	{
 		os.width(TYPE_WIDTH);	// Метод width(N) задает размер поля, в которое будет выведено значение
 		os << std::left;
-		os << std::string(strchr(typeid(*this).name(), ' ') + 1) + ":";
+		os << std::string(strchr(typeid(*this).name(), ' ') + 1);
+		os << "|";
 		//strchr(const char* str, char symbol); 
 		//strchr() в указанной строке находит указанный символ,
 		// И вовзвращает указатель на найденный символ, или 'nullptr',
@@ -79,8 +81,10 @@ public:
 		//return os << "Фамилия - " << last_name << ", " << "Имя - " << first_name << ", " << "Возраст - " << age << "  ";
 		os.width(NAME_WIDTH);
 		os << last_name;
+		os << "|";
 		os.width(NAME_WIDTH);
 		os << first_name;
+		os << "|";
 		os.width(AGE_WIDTH);
 		os << age;
 		return os;
@@ -159,14 +163,24 @@ public:
 	{
 		//return Human::info(os) << "Специальность - " << speciality << ", " << "Номер группы - " << group << ", " << "Рейтинг - " << rating << ", " << "Успеваемость - " << attendance;
 		Human::info(os);
+		os << "|";
 		os.width(SPECIALITY_WIDTH);
 		os << speciality;
+		os << "|";
 		os.width(GROUP_WIDTH);
 		os << group;
+		os << "|";
 		os.width(RAT_WIDTH);
 		os << rating;
+		os << "|";
 		os.width(RAT_WIDTH);
 		os << attendance;
+		os << std::right;
+		os.width(5);
+		os << "|";
+		os << std::right;
+		os.width(11);
+		os << "|";
 		return os;
 	}
 };
@@ -177,7 +191,7 @@ public:
 class Teacher :public Human
 {
 	static const int SPECIALITY_WIDTH = 32;
-	static const int EXPERIENCE_WIDTH = 5;
+	static const int EXPERIENCE_WIDTH = 2;
 	std::string speciality;
 	int experience;
 public:
@@ -213,10 +227,24 @@ public:
 	{
 		//return Human::info(os) << "Специальность - " << speciality << ", " << "опыт работы - " << experience;
 		Human::info(os);
+		os << "|";
 		os.width(SPECIALITY_WIDTH);
 		os << speciality;
+		os << "|";
+		os.width(9);
+		os << std::right;
+		os << "|";
+		os.width(9);
+		os << std::right;
+		os << "|";
+		os.width(13);
+		os << std::right;
+		os << "|";
 		os.width(EXPERIENCE_WIDTH);
 		os << experience;
+		os.width(9);
+		os << std::right;
+		os << "|";
 		return os;
 	}
 };
@@ -227,6 +255,7 @@ public:
 
 class Graduate :public Student
 {
+	static const int SUBJECT_WIDTH = 8;
 	std::string subject;
 public:
 	const std::string& get_subject()const
@@ -252,19 +281,187 @@ public:
 	//			Methods:
 	std::ostream& info(std::ostream& os)const override
 	{
-		return Student::info(os) << ", " << "предмет - " << get_subject();
+		//return Student::info(os) << ", " << "предмет - " << get_subject();
+		Student::info(os);
+		os << std::left;
+		os.width(SUBJECT_WIDTH);
+		os << subject;
+		return os;
 	}
 };
+
+#define TYPE_GROUP_TAKE_PARAMETERS const std::string Last_name, const std::string First_name, const std::string Age, const std::string Speciality, const std::string Group, const std::string Rating, const std::string Attendance, const std::string Experience, const std::string Subject
+
+class Type_group
+{
+	static const int TYPE_WIDTH = 12;
+	static const int NAME_WIDTH = 12;
+	static const int AGE_WIDTH = 5;
+	static const int SPECIALITY_WIDTH = 32;
+	static const int GROUP_WIDTH = 8;
+	static const int RAT_WIDTH = 8;
+	static const int ATTENDANCE_WIDTH = 12;
+	static const int EXPERIENCE_WIDTH = 5;
+	static const int SUBJECT_WIDTH = 10;
+	std::string Last_name;
+	std::string First_name;
+	std::string Age;
+	std::string Speciality;
+	std::string Group;
+	std::string Rating;
+	std::string Attendance;
+	std::string Subject;
+	std::string Experience;
+public:
+	const std::string& get_Last_name()const
+	{
+		return Last_name;
+	}
+	const std::string& get_First_name()const
+	{
+		return First_name;
+	}
+	const std::string& get_Age()const
+	{
+		return Age;
+	}
+	const std::string& get_Speciality()const
+	{
+		return Speciality;
+	}
+	const std::string& get_Group()const
+	{
+		return Group;
+	}
+	const std::string& get_Rating()const
+	{
+		return Rating;
+	}
+	const std::string& get_Attendance()const
+	{
+		return Attendance;
+	}
+	const std::string& get_Experience()const
+	{
+		return Experience;
+	}
+	const std::string& get_Subject()const
+	{
+		return Subject;
+	}
+	void set_Last_Name(const std::string& Last_name)
+	{
+		this->Last_name = Last_name;
+	}
+	void set_First_Name(const std::string& First_name)
+	{
+		this->First_name = First_name;
+	}
+	void set_Age(const std::string& Age)
+	{
+		this->Age = Age;
+	}
+	void set_Speciality(const std::string& Speciality)
+	{
+		this->Speciality = Speciality;
+	}
+	void set_Group(const std::string& Group)
+	{
+		this->Group = Group;
+	}
+	void set_Rating(const std::string& Rating)
+	{
+		this->Rating = Rating;
+	}
+	void set_Attendance(const std::string& Attendance)
+	{
+		this->Attendance = Attendance;
+	}
+	void set_experience(const std::string& Experience)
+	{
+		this->Experience = Experience;
+	}
+	void set_subject(const std::string& Subject)
+	{
+		this->Subject = Subject;
+	}
+	//		Constructors:
+	Type_group(TYPE_GROUP_TAKE_PARAMETERS)
+	{
+		set_Last_Name(Last_name);
+		set_First_Name(First_name);
+		set_Age(Age);
+		set_Speciality(Speciality);
+		set_Group(Group);
+		set_Rating(Rating);
+		set_Attendance(Attendance);
+		set_experience(Experience);
+		set_subject(Subject);
+		cout << "TgConstructor:\t" << this << endl;
+	}
+	virtual ~Type_group()
+	{
+		cout << "TgDestructor:\t" << this << endl;
+	}
+	//		Methods:
+	virtual std::ostream& info(std::ostream& os)const
+	{
+		os.width(TYPE_WIDTH);
+		os << std::left;
+		os << std::string(strchr(typeid(*this).name(), ' ') + 1);
+		os << "|";
+		os.width(NAME_WIDTH);
+		os << Last_name;
+		os << "|";
+		os.width(NAME_WIDTH);
+		os << First_name;
+		os << "|";
+		os.width(AGE_WIDTH);
+		os << Age;
+		os << "|";
+		os.width(SPECIALITY_WIDTH);
+		os << Speciality;
+		os << "|";
+		os.width(GROUP_WIDTH);
+		os << Group;
+		os << "|";
+		os.width(RAT_WIDTH);
+		os << Rating;
+		os << "|";
+		os.width(ATTENDANCE_WIDTH);
+		os << Attendance;
+		os << "|";
+		os.width(EXPERIENCE_WIDTH);
+		os << Experience;
+		os << "|";
+		os.width(SUBJECT_WIDTH);
+		os << Subject;
+		return os;
+	}
+};
+
+std::ostream& operator<<(std::ostream& os, const Type_group& obj)
+{
+	return obj.info(os);
+}
 
 void Print(Human* group[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
 		group[i]->info(cout);
-		cout << delimiter << endl;
+		//cout << delimiter << endl;
 	}
-	cout << "Количество объектов: " << group[0]->get_count() << endl;
 	cout << "Количество объектов: " << Human::get_count() << endl;
+}
+
+void Print_type_group(Type_group* zagolovok_tablicbI[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		zagolovok_tablicbI[i]->info(cout);
+		/*cout << delimiter << endl;*/
+	}
 }
 
 void Save(Human* group[], const int n, const std::string& filename)
@@ -279,6 +476,25 @@ void Save(Human* group[], const int n, const std::string& filename)
 	cmd += filename;
 	system(cmd.c_str());	//Метод c_str() возвращает строку в виде массива символов (char* );
 }
+void Save_type_group(Type_group* zagolovok_tablicbI[], Human* group[], const int n, const int d, const std::string& filename)
+{
+	std::ofstream fout(filename);
+	for (int i = 0; i < n; i++)
+	{
+		fout << *zagolovok_tablicbI[i] << endl;
+		/*fout << Nolimiter << endl;*/
+	}
+	for (int i = 0; i < d; i++)
+	{
+		fout << *group[i] << endl;
+		/*fout << Nolimiter << endl;*/
+	}
+	fout.close();
+	std::string cmd = "notepad ";
+	cmd += filename;
+	system(cmd.c_str());	//Метод c_str() возвращает строку в виде массива символов (char* );
+}
+
 Human** Load(const std::string& filename, int& n)
 {
 	Human** group = nullptr;
@@ -305,6 +521,7 @@ Human** Load(const std::string& filename, int& n)
 		fin.clear();
 		fin.seekg(0);	//Метод seekg(n), переводит Get-курсор (на чтение) в указанную позицию 'n';
 		cout << "Position " << fin.tellg() << endl;
+
 	}
 	else
 	{
@@ -323,6 +540,7 @@ void Clear(Human* group[], const int n)
 		cout << delimiter << endl;
 	}
 }
+
 //#define INHERITANCE
 //#define POLYMORPHISM
 //#define LoadGroup
@@ -355,15 +573,26 @@ void main()
 		new Student("Vercetty", "Tommy", 30, "Theft", "Vice", 98, 99),
 		new Teacher("Diaz", "Ricardo", 50, "Weapons distribution", 20)
 	};
+	Type_group* zagolovok_tablicbI[] =
+	{
+		new Type_group("Last Name","First Name", "Age", "Speciality", "Group", "Rating", "Attendance", "Experience", "Subject")
+	};
+
+
+	Print_type_group(zagolovok_tablicbI, sizeof(zagolovok_tablicbI) / sizeof(zagolovok_tablicbI[0]));
 	Print(group, sizeof(group) / sizeof(group[0]));
-	Save(group, sizeof(group) / sizeof(group[0]), "group.txt");
+	Save_type_group(zagolovok_tablicbI, group, sizeof(zagolovok_tablicbI) / sizeof(zagolovok_tablicbI[0]), sizeof(group) / sizeof(group[0]), "group.txt");
 
 
-
+	for (int i = 0; i < sizeof(zagolovok_tablicbI) / sizeof(zagolovok_tablicbI[0]); i++)
+	{
+		delete zagolovok_tablicbI[i];
+		/*cout << delimiter << endl;*/
+	}
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		delete group[i];
-		cout << delimiter << endl;
+		/*cout << delimiter << endl;*/
 	}
 #endif
 
@@ -389,6 +618,8 @@ void main()
 #ifdef Read_group
 	int n = 0;
 	Human** group = Load("group.txt", n);
+
+
 	Print(group, n);
 	Clear(group, n);
 #endif
