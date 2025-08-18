@@ -317,7 +317,7 @@ Human** Load(const std::string& filename, int& n)
 }
 void Clear(Human* group[], const int n)
 {
-	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	for (int i = 0; i < n; i++)
 	{
 		delete group[i];
 		cout << delimiter << endl;
