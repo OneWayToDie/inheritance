@@ -587,12 +587,10 @@ void main()
 	for (int i = 0; i < sizeof(zagolovok_tablicbI) / sizeof(zagolovok_tablicbI[0]); i++)
 	{
 		delete zagolovok_tablicbI[i];
-		/*cout << delimiter << endl;*/
 	}
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		delete group[i];
-		/*cout << delimiter << endl;*/
 	}
 #endif
 
@@ -618,7 +616,6 @@ void main()
 #ifdef Read_group
 	int n = 0;
 	Human** group = Load("group.txt", n);
-
 
 	Print(group, n);
 	Clear(group, n);
