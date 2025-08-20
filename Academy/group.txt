@@ -1,5 +1,5 @@
 Student:    Pinkman     Jessie      22   Chemistry                       WW_220  95      98      
 Teacher:    white       walter      50   chemistry                       25   
-Graduate:   Debilovi4   Danila      25   nifiga nedelanie                pv_521  0       0       , предмет - OOP
+Graduate:   Debilovi4   Danila      25   nifiga nedelanie                pv_521  0       0        OOP
 Student:    Vercetty    Tommy       30   Theft                           Vice    98      99      
 Teacher:    Diaz        Ricardo     50   Weapons distribution            20   
