@@ -19,7 +19,12 @@ public:
 	virtual double get_area()const = 0;
 	virtual double get_perimeter()const = 0;
 	virtual void draw()const = 0;
-
+	virtual void info()const
+	{
+		cout << "Площадь фигуры: " << get_area() << endl;
+		cout << "Периметр фигуры: " << get_perimeter() << endl;
+		draw();
+	}
 
 };
 
@@ -59,6 +64,12 @@ public:
 		}
 		cout << endl;
 	}
+	void info()const override
+	{
+		cout << typeid(*this).name() << endl;
+		cout << "Длина стороны квадрата: " << get_side() << endl;
+		Shape::info();
+	}
 };
 
 void main()
@@ -71,4 +82,6 @@ void main()
 	cout << "Площадь квадрата: " << square.get_area() << endl;
 	cout << "Периметр квадрата: " << square.get_perimeter() << endl;
 	square.draw();
+	cout << "\n-------------------------------\n" << endl;
+	square.info();
 }
