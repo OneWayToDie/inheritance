@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+ï»¿#define _USE_MATH_DEFINES
 #include<iostream>
 #include<Windows.h>
 using namespace std;
@@ -88,8 +88,8 @@ namespace Geometry
 		virtual void draw()const = 0;
 		virtual void info()const
 		{
-			cout << "Ïëîùàäü ôèãóðû: " << get_area() << endl;
-			cout << "Ïåðèìåòð ôèãóðû: " << get_perimeter() << endl;
+			cout << "ÐŸÐ»Ð¾Ñ‰Ð°Ð´ÑŒ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹: " << get_area() << endl;
+			cout << "ÐŸÐµÑ€Ð¸Ð¼ÐµÑ‚Ñ€ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹: " << get_perimeter() << endl;
 			draw();
 		}
 
@@ -131,19 +131,19 @@ namespace Geometry
 		}
 		void draw()const override
 		{
-			//1)Ïîëó÷àåì îêíî êîíñîëè:
+			//1)ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð¾ÐºÐ½Ð¾ ÐºÐ¾Ð½ÑÐ¾Ð»Ð¸:
 			HWND hwnd = GetConsoleWindow();
-			//2) Ïîëó÷àåì êîíòåêñò óñòðîéñòâà (DC - Device Context) äëÿ îêíà êîíñîëè
-			HDC hdc = GetDC(hwnd);	// DC - ýòî òî, íà ÷¸ì ìû áóäåì ðèñîâàòü
-			//3) Ñîçäàäèì èíñòðóìåíòû, êîòîðûìè ìû áóäåì ðèñîâàòü:
-			HPEN hPen = CreatePen(PS_SOLID, 5, color); //Êàðàíäàø ðèñóåò êîíòóð ôèãóðû
-			HBRUSH hBrush = CreateSolidBrush(color);	//Êèñòü ðèñóåò çàëèâêó ôèãóðû
-			//4) Âûáåðèì ñîçäàííûå èíñòðóìåíòû:
+			//2) ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð° (DC - Device Context) Ð´Ð»Ñ Ð¾ÐºÐ½Ð° ÐºÐ¾Ð½ÑÐ¾Ð»Ð¸
+			HDC hdc = GetDC(hwnd);	// DC - ÑÑ‚Ð¾ Ñ‚Ð¾, Ð½Ð° Ñ‡Ñ‘Ð¼ Ð¼Ñ‹ Ð±ÑƒÐ´ÐµÐ¼ Ñ€Ð¸ÑÐ¾Ð²Ð°Ñ‚ÑŒ
+			//3) Ð¡Ð¾Ð·Ð´Ð°Ð´Ð¸Ð¼ Ð¸Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚Ñ‹, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¼Ð¸ Ð¼Ñ‹ Ð±ÑƒÐ´ÐµÐ¼ Ñ€Ð¸ÑÐ¾Ð²Ð°Ñ‚ÑŒ:
+			HPEN hPen = CreatePen(PS_SOLID, 5, color); //ÐšÐ°Ñ€Ð°Ð½Ð´Ð°Ñˆ Ñ€Ð¸ÑÑƒÐµÑ‚ ÐºÐ¾Ð½Ñ‚ÑƒÑ€ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹
+			HBRUSH hBrush = CreateSolidBrush(color);	//ÐšÐ¸ÑÑ‚ÑŒ Ñ€Ð¸ÑÑƒÐµÑ‚ Ð·Ð°Ð»Ð¸Ð²ÐºÑƒ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹
+			//4) Ð’Ñ‹Ð±ÐµÑ€Ð¸Ð¼ ÑÐ¾Ð·Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚Ñ‹:
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
-			//5) Ìîæíî ðèñîâàòü:
+			//5) ÐœÐ¾Ð¶Ð½Ð¾ Ñ€Ð¸ÑÐ¾Ð²Ð°Ñ‚ÑŒ:
 			::Rectangle(hdc, start_x, start_y, start_x+width, start_y+height);
-			//6) hdc, hPen, hBrush - çàíèìàþò ðåñóðñû, à ðåñóðñû íóæíî îñâîáîæäàòü:
+			//6) hdc, hPen, hBrush - Ð·Ð°Ð½Ð¸Ð¼Ð°ÑŽÑ‚ Ñ€ÐµÑÑƒÑ€ÑÑ‹, Ð° Ñ€ÐµÑÑƒÑ€ÑÑ‹ Ð½ÑƒÐ¶Ð½Ð¾ Ð¾ÑÐ²Ð¾Ð±Ð¾Ð¶Ð´Ð°Ñ‚ÑŒ:
 			DeleteObject(hBrush);
 			DeleteObject(hPen);
 
@@ -153,7 +153,7 @@ namespace Geometry
 		void info()const override
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Ñòîðîíû: " << width << "x" << height << endl;
+			cout << "Ð¡Ñ‚Ð¾Ñ€Ð¾Ð½Ñ‹: " << width << "x" << height << endl;
 			Shape::info();
 		}
 	};
@@ -271,7 +271,7 @@ namespace Geometry
 		}
 	};
 
-	class Right_Angled_Triangle :public Triangle		//Ïðÿìîóãîëüíûé òðåóãîëüíèê
+	class Right_Angled_Triangle :public Triangle		//ÐŸÑ€ÑÐ¼Ð¾ÑƒÐ³Ð¾Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº
 	{
 		double side_1;
 		double side_2;
@@ -337,10 +337,10 @@ namespace Geometry
 		}
 	};
 
-	class Isosceles_Triangle :public Triangle		//Ïðÿìîóãîëüíûé òðåóãîëüíèê
+	class Isosceles_Triangle :public Triangle		//ÐŸÑ€ÑÐ¼Ð¾ÑƒÐ³Ð¾Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº
 	{
 		double side;
-		double footing;	//îñíîâàíèå
+		double footing;	//Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ
 	public:
 		Isosceles_Triangle(double side, double footing, SHAPE_TAKE_PARAMETERS) :Triangle(SHAPE_GIVE_PARAMETERS)
 		{
@@ -399,7 +399,7 @@ namespace Geometry
 		}
 	};
 
-	class Versatile_Triangle :public Triangle		//Ðàçíîñòîðîííèé òðåóãîëüíèê
+	class Versatile_Triangle :public Triangle		//Ð Ð°Ð·Ð½Ð¾ÑÑ‚Ð¾Ñ€Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº
 	{
 		double side_1;
 		double side_2;
@@ -437,7 +437,7 @@ namespace Geometry
 		}
 		double get_area()const override
 		{
-			double P = (side_1 + side_2 + side_3) / 2; //ïîëóïåðèìåòð
+			double P = (side_1 + side_2 + side_3) / 2; //Ð¿Ð¾Ð»ÑƒÐ¿ÐµÑ€Ð¸Ð¼ÐµÑ‚Ñ€
 			return sqrt(P * (P - side_1) * (P - side_2) * (P - side_3));
 		}
 		double get_perimeter()const override
