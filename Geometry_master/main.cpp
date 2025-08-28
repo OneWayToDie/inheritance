@@ -95,50 +95,6 @@ namespace Geometry
 
 	};
 
-	//class Square :public Shape
-	//{
-	//	double side;
-	//public:
-	//	Square(double side, SHAPE_TAKE_PARAMETERS) :Shape(SHAPE_GIVE_PARAMETERS)
-	//	{
-	//		set_side(side);
-	//	}
-	//	double get_side()const
-	//	{
-	//		return side;
-	//	}
-	//	void set_side(double side)
-	//	{
-	//		this->side = side;
-	//	}
-	//	double get_area()const override
-	//	{
-	//		return side * side;
-	//	}
-	//	double get_perimeter()const override
-	//	{
-	//		return 4 * side;
-	//	}
-	//	void draw()const override
-	//	{
-	//		for (int i = 0; i < side; i++)
-	//		{
-	//			for (int j = 0; j < side; j++)
-	//			{
-	//				cout << "* ";
-	//			}
-	//			cout << endl;
-	//		}
-	//		cout << endl;
-	//	}
-	//	void info()const override
-	//	{
-	//		cout << typeid(*this).name() << endl;
-	//		cout << "Длина стороны квадрата: " << get_side() << endl;
-	//		Shape::info();
-	//	}
-	//};
-
 	class Rectangle : public Shape
 	{
 		double width;
@@ -314,33 +270,248 @@ namespace Geometry
 			ReleaseDC(hwnd, hdc);
 		}
 	};
+
+	class Right_Angled_Triangle :public Triangle		//Прямоугольный треугольник
+	{
+		double side_1;
+		double side_2;
+	public:
+		Right_Angled_Triangle(double side_1, double side_2, SHAPE_TAKE_PARAMETERS) :Triangle(SHAPE_GIVE_PARAMETERS)
+		{
+			set_side_1(side_1);
+			set_side_2(side_2);
+		}
+		void set_side_1(double side_1)
+		{
+			this->side_1 = filter_size(side_1);
+		}
+		double get_side_1()const
+		{
+			return side_1;
+		}
+		void set_side_2(double side_2)
+		{
+			this->side_2 = filter_size(side_2);
+		}
+		double get_side_2()const
+		{
+			return side_2;
+		}
+		double get_height()const override
+		{
+			double gipotenuza;
+			gipotenuza = sqrt(side_1 * side_1 + side_2 * side_2);
+			return (side_1 * side_2) / gipotenuza;
+		}
+		double get_area()const override
+		{
+			return side_1 * side_2 / 2;
+		}
+		double get_perimeter()const override
+		{
+			double gipotenuza;
+			gipotenuza = sqrt(side_1 * side_1 + side_2 * side_2);
+			return side_1 + side_2 + gipotenuza;
+		}
+		void draw()const override
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
+
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+
+			const POINT vertices[] =
+			{
+				{ start_x, start_y + get_height() },
+				{ start_x + side_1, start_y + get_height() },
+				{ start_x, start_y }
+			};
+			::Polygon(hdc, vertices, 3);
+
+			DeleteObject(hBrush);
+			DeleteObject(hPen);
+			ReleaseDC(hwnd, hdc);
+		}
+	};
+
+	class Isosceles_Triangle :public Triangle		//Прямоугольный треугольник
+	{
+		double side;
+		double footing;	//основание
+	public:
+		Isosceles_Triangle(double side, double footing, SHAPE_TAKE_PARAMETERS) :Triangle(SHAPE_GIVE_PARAMETERS)
+		{
+			set_side(side);
+			set_footing(footing);
+		}
+		void set_side(double side)
+		{
+			this->side = filter_size(side);
+		}
+		double get_side()const
+		{
+			return side;
+		}
+		void set_footing(double footing)
+		{
+			this->footing = filter_size(footing);
+		}
+		double get_footing()const
+		{
+			return footing;
+		}
+		double get_height()const override
+		{
+			return sqrt((side*side) - (footing/2 * footing/2));
+		}
+		double get_area()const override
+		{
+			return 0.5 * footing * get_height();
+		}
+		double get_perimeter()const override
+		{
+			return side * 2 + footing;
+		}
+		void draw()const override
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
+
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+
+			const POINT vertices[] =
+			{
+				{ start_x, start_y + get_height() },
+				{ start_x + side, start_y + get_height() },
+				{ start_x + side / 2, start_y }
+			};
+			::Polygon(hdc, vertices, 3);
+
+			DeleteObject(hBrush);
+			DeleteObject(hPen);
+			ReleaseDC(hwnd, hdc);
+		}
+	};
+
+	class Versatile_Triangle :public Triangle		//Разносторонний треугольник
+	{
+		double side_1;
+		double side_2;
+		double side_3;
+	public:
+		Versatile_Triangle(double side_1, double side_2, double side_3, SHAPE_TAKE_PARAMETERS) :Triangle(SHAPE_GIVE_PARAMETERS)
+		{
+			set_side_1(side_1);
+			set_side_2(side_2);
+			set_side_3(side_3);
+		}
+		void set_side_1(double side_1)
+		{
+			this->side_1 = filter_size(side_1);
+		}
+		double get_side_1()const
+		{
+			return side_1;
+		}
+		void set_side_2(double side_2)
+		{
+			this->side_2 = filter_size(side_2);
+		}
+		double get_side_2()const
+		{
+			return side_2;
+		}
+		void set_side_3(double side_3)
+		{
+			this->side_3 = filter_size(side_3);
+		}
+		double get_side_3()const
+		{
+			return side_3;
+		}
+		double get_area()const override
+		{
+			double P = (side_1 + side_2 + side_3) / 2; //полупериметр
+			return sqrt(P * (P - side_1) * (P - side_2) * (P - side_3));
+		}
+		double get_perimeter()const override
+		{
+			return side_1 + side_2 + side_3;
+		}
+		double get_height()const override
+		{
+			double h_side_1 = 2 * get_area() / side_1;
+			double h_side_2 = 2 * get_area() / side_2;
+			double h_side_3 = 2 * get_area() / side_3;
+			
+			return h_side_3;
+		}
+		void draw()const override
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
+
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+
+			const POINT vertices[] =
+			{
+				{ start_x, start_y + side_1 },
+				{ start_x + side_2, start_y + get_height() },
+				{ start_x + side_3, start_y }
+			};
+			::Polygon(hdc, vertices, 3);
+
+			DeleteObject(hBrush);
+			DeleteObject(hPen);
+			ReleaseDC(hwnd, hdc);
+		}
+	};
 }
+
+
+
+
 
 void main()
 {
 	setlocale(LC_ALL, "");
 
-	//Shape shape(Color::Red);
-	Geometry::Square square(5, 100, 100, 1, Geometry::Color::Red);
-	//cout << "Длина стороны квадраты:" << square.get_side() << endl;
-	//cout << "Площадь квадрата: " << square.get_area() << endl;
-	//cout << "Периметр квадрата: " << square.get_perimeter() << endl;
-	//square.draw();
-	//cout << "\n-------------------------------\n" << endl;
-	square.info();
+	//Geometry::Square square(5, 100, 100, 1, Geometry::Color::Red);
+	//square.info();
 
-	Geometry::Rectangle rect(150, 100, 550, 100, 2, Geometry::Color::Orange);
-	rect.info();
+	//Geometry::Rectangle rect(150, 100, 550, 100, 2, Geometry::Color::Orange);
+	//rect.info();
 
-	Geometry::Circle circle(50, 800, 200, 1, Geometry::Color::Yellow);
-	circle.info();
+	//Geometry::Circle circle(50, 800, 200, 1, Geometry::Color::Yellow);
+	//circle.info();
 
-	Geometry::EquilateralTriangle e_triangle(50, 550, 350, 32, Geometry::Color::Green);
-	e_triangle.info();
+	//Geometry::EquilateralTriangle e_triangle(50, 550, 350, 32, Geometry::Color::Green);
+	//e_triangle.info();
+
+	Geometry::Right_Angled_Triangle angled_triangle(50, 100, 700, 550, 32,  Geometry::Color::Orange);
+	angled_triangle.info();
+
+	Geometry::Isosceles_Triangle isosceles_triangle(95, 160, 400, 350, 32, Geometry::Color::Orange);
+	isosceles_triangle.info();
+
+	Geometry::Versatile_Triangle versatile_triangle(95, 160, 120, 900, 350, 32, Geometry::Color::Orange);
+	versatile_triangle.info();
 
 	while (true)
 	{
-		square.draw();
-		rect.draw();
+	/*	square.draw();
+		rect.draw();*/
+		angled_triangle.draw();
+		isosceles_triangle.draw();
+		versatile_triangle.draw();
 	}
 }
