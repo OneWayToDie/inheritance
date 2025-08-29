@@ -81,12 +81,12 @@ namespace Geometry
 		{
 			return line_width;
 		}
-		
+
 
 		virtual double get_area()const = 0;
 		virtual double get_perimeter()const = 0;
 		virtual void draw()const = 0;
-		virtual void info()const
+		virtual void info(int width, int height, BOOL(__stdcall *DrawFunction)(HDC, int, int, int, int))const
 		{
 			cout << "Площадь фигуры: " << get_area() << endl;
 			cout << "Периметр фигуры: " << get_perimeter() << endl;
@@ -95,49 +95,6 @@ namespace Geometry
 
 	};
 
-	//class Square :public Shape
-	//{
-	//	double side;
-	//public:
-	//	Square(double side, SHAPE_TAKE_PARAMETERS) :Shape(SHAPE_GIVE_PARAMETERS)
-	//	{
-	//		set_side(side);
-	//	}
-	//	double get_side()const
-	//	{
-	//		return side;
-	//	}
-	//	void set_side(double side)
-	//	{
-	//		this->side = side;
-	//	}
-	//	double get_area()const override
-	//	{
-	//		return side * side;
-	//	}
-	//	double get_perimeter()const override
-	//	{
-	//		return 4 * side;
-	//	}
-	//	void draw()const override
-	//	{
-	//		for (int i = 0; i < side; i++)
-	//		{
-	//			for (int j = 0; j < side; j++)
-	//			{
-	//				cout << "* ";
-	//			}
-	//			cout << endl;
-	//		}
-	//		cout << endl;
-	//	}
-	//	void info()const override
-	//	{
-	//		cout << typeid(*this).name() << endl;
-	//		cout << "Длина стороны квадрата: " << get_side() << endl;
-	//		Shape::info();
-	//	}
-	//};
 
 	class Rectangle : public Shape
 	{
@@ -173,7 +130,8 @@ namespace Geometry
 		{
 			return (width + height) * 2;
 		}
-		void draw()const override
+		virtual void draw()const = 0;
+		virtual void draw(int width, int height, BOOL (__stdcall *DrawFunction)(HDC, int, int, int, int))const
 		{
 			//1)Получаем окно консоли:
 			HWND hwnd = GetConsoleWindow();
@@ -186,7 +144,7 @@ namespace Geometry
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
 			//5) Можно рисовать:
-			::DrawFunction(hdc, start_x, start_y, start_x+width, start_y+height);
+			(*DrawFunction)(hdc, start_x, start_y, start_x + width, start_y + height);
 
 
 			//6) hdc, hPen, hBrush - занимают ресурсы, а ресурсы нужно освобождать:
@@ -203,6 +161,15 @@ namespace Geometry
 			Shape::info();
 		}
 	};
+	class Square :public Rectangle
+	{
+	public:
+		Square(int side, SHAPE_TAKE_PARAMETERS) :Rectangle(side, side, SHAPE_GIVE_PARAMETERS)
+		{
+
+		}
+	};
+
 	class Square :public Rectangle
 	{
 	public:
@@ -242,19 +209,7 @@ namespace Geometry
 		}
 		void draw()const override
 		{
-			HWND hwnd = GetConsoleWindow();
-			HDC hdc = GetDC(hwnd);
-			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
-			HBRUSH hBrush = CreateSolidBrush(color);
-
-			SelectObject(hdc, hPen);
-			SelectObject(hdc, hBrush);
-
-			::Ellipse(hdc, start_x, start_y, start_x + get_diameter(), start_y + get_diameter());
-
-			DeleteObject(hBrush);
-			DeleteObject(hPen);
-			ReleaseDC(hwnd, hdc);
+			draw(get_diameter(),)
 		}
 	};
 
