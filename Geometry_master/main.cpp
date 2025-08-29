@@ -186,7 +186,9 @@ namespace Geometry
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
 			//5) Можно рисовать:
-			::Rectangle(hdc, start_x, start_y, start_x+width, start_y+height);
+			::DrawFunction(hdc, start_x, start_y, start_x+width, start_y+height);
+
+
 			//6) hdc, hPen, hBrush - занимают ресурсы, а ресурсы нужно освобождать:
 			DeleteObject(hBrush);
 			DeleteObject(hPen);
